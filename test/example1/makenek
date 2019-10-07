@@ -3,12 +3,16 @@
 # (c) 2008,2009,2010 UCHICAGO ARGONNE, LLC
 
 # source path 
-SOURCE_ROOT="$HOME/Nekbone/src" 
+SOURCE_ROOT="$HOME/ANL/app/Nekbone/src"
 
 # Fortran compiler
-F77="mpif77"
+#F77="mpefc"
+#F77="tau_f77.sh"
+F77="mpif90"
 
 # C compiler
+#CC="mpecc"
+#CC="tau_cc.sh"
 CC="mpicc"
 
 # pre-processor symbol list 
@@ -29,13 +33,14 @@ CC="mpicc"
 #USR="foo.o"
 
 # linking flags
-#USR_LFLAGS="-L/usr/lib -lfoo"
+#USR_LFLAGS="-mpilog -pthread"
+USR_LFLAGS="-lopenblas"
 
 # generic compiler flags
-#G="-g"
+G="-g -DBLAS_MXM"
 
 # optimization flags
-#OPT_FLAGS_STD=""
+#OPT_FLAGS_STD="-O3"
 #OPT_FLAGS_MAG=""
 
 ###############################################################################
@@ -51,5 +56,5 @@ fi
 # do some checks and create makefile
 source $SOURCE_ROOT/makenek.inc
 # compile
-make -j4 -f makefile 2>&1 | tee compiler.out
+make -j 1 -f makefile 2>&1 | tee compiler.out
 exit 0

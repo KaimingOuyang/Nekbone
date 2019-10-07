@@ -24,6 +24,7 @@ c
       real x(n),f(n),r(n),w(n),p(n),z(n),g(1),c(n)
 
       character*1 ans
+      integer PID
 
       pap = 0.0
 
@@ -45,6 +46,11 @@ c     set machine tolerances
 
       miter = niter
 c     call tester(z,r,n)  
+      !pid = GETPID()
+      !write(6, 100) pid
+  100 format("my pid ", I0)
+      !call sleep(10)
+
       do iter=1,miter
          call solveM(z,r,n)    ! preconditioner here
 

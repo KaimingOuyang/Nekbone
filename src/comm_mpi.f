@@ -8,11 +8,11 @@ c-----------------------------------------------------------------------
 
       logical flag
 
-       call mpi_initialized(mpi_is_initialized, ierr) !  Initialize MPI
-       if ( mpi_is_initialized .eq. 0 ) then
-          call mpi_init (ierr)
-       endif
-
+      call mpi_initialized(mpi_is_initialized, ierr) !  Initialize MPI
+      if ( mpi_is_initialized .eq. 0 ) then
+      call mpi_init (ierr)
+      endif
+      
       ! create communicator
       call init_nek_comm(intracomm)
       np  = np_
@@ -22,7 +22,7 @@ c-----------------------------------------------------------------------
 
       ! check upper tag size limit
       call mpi_attr_get(MPI_COMM_WORLD,MPI_TAG_UB,nval,flag,ierr)
-      if (nval.lt.(10000+max(lp,lelg))) then
+      if (nval.lt.(10000+lp)) then
          if(nid.eq.0) write(6,*) 'ABORT: MPI_TAG_UB too small!'
          call exitt
       endif

@@ -151,6 +151,8 @@ if [ $F77ok -eq 0 ]; then
 fi
 
 # assign F77 compiler specific flags
+# Kaiming: force script using gfortran compiler
+F77comp="gfortran"
 case $F77comp in
   *pgf*)        P="-r8 -Mpreprocess"
                ;;
@@ -170,6 +172,8 @@ case $F77comp in
                ;;
   *open*)       P="-r8 -cpp -fno-second-underscore"
                ;;
+  *mpefc*)  	P="-fdefault-real-8 -x f77-cpp-input"
+	  			;;
   *)  echo "ERROR: Unable to detect compiler!"
       echo "        - don't know how to promote datatype REAL to 8 bytes"
       echo "        - don't know how to invoke the C pre-processor (CPP) before compilation"
@@ -216,10 +220,10 @@ fi
 
 PPLIST="${PPLIST} GLOBAL_LONG_LONG"
 
-MXM_USER="mxm_std.o blas.o"
+MXM_USER="mxm_std.o" # Don't use it's own blas routine. I am using Openblas
 echo $PPLIST | grep 'BG' >/dev/null 
 if [ $? -eq 0 ]; then
-   MXM_USER="mxm_std.o bg_aligned3.o bg_mxm44.o bg_mxm44_uneven.o bg_mxm3.o blas.o" 
+   MXM_USER="mxm_std.o bg_aligned3.o bg_mxm44.o bg_mxm44_uneven.o bg_mxm3.o" 
    OPT_FLAGS_STD="-qarch=450 -qtune=450"
    OPT_FLAGS_MAG="-O5 -qarch=450d -qtune=450"
 fi
