@@ -37,10 +37,10 @@ CC="mpicc"
 USR_LFLAGS="-lopenblas"
 
 # generic compiler flags
-G="-g -DBLAS_MXM"
+G="-DBLAS_MXM -mcmodel=medium"
 
 # optimization flags
-#OPT_FLAGS_STD="-O3"
+OPT_FLAGS_STD="-O3"
 #OPT_FLAGS_MAG=""
 
 ###############################################################################
