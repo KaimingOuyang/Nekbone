@@ -18,7 +18,10 @@ c-----------------------------------------------------------------------
       np  = np_
       nid = nid_
 
-      if(nid.eq.0) call printHeader
+      if(nid.eq.0) then 
+         call printHeader
+         call sample_process_and_task()
+      endif
 
       ! check upper tag size limit
       call mpi_attr_get(MPI_COMM_WORLD,MPI_TAG_UB,nval,flag,ierr)

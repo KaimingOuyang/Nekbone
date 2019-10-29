@@ -13,7 +13,7 @@ c-----------------------------------------------------------------------
       real x(lt),f(lt),r(lt),w(lt),p(lt),z(lt),c(lt)
       real g(6,lt)
       real mfloplist(1024), avmflop
-      integer icount  
+      integer icount, procid
 
       logical ifbrick
       integer iel0,ielN,ielD   ! element range per proc.
@@ -21,6 +21,10 @@ c-----------------------------------------------------------------------
       integer npx,npy,npz      ! processor decomp
       integer mx ,my ,mz       ! element decomp
 
+C       procid = GETPID()
+C       write(6, 100) procid
+C   100 format("my pid ", I0)
+C       call sleep(10)
 
       call iniproc(mpi_comm_world)    ! has nekmpi common block
       call init_delay
