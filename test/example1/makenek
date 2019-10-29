@@ -8,12 +8,12 @@ SOURCE_ROOT="$HOME/ANL/app/Nekbone/src"
 # Fortran compiler
 #F77="mpefc"
 #F77="tau_f77.sh"
-F77="mpif90"
+F77="mpif90 -fpie -pie -rdynamic"
 
 # C compiler
 #CC="mpecc"
 #CC="tau_cc.sh"
-CC="mpicc"
+CC="mpicc -fpie -pie -rdynamic"
 
 # pre-processor symbol list 
 # (set PPLIST=? to get a list of available symbols)
@@ -34,7 +34,7 @@ CC="mpicc"
 
 # linking flags
 #USR_LFLAGS="-mpilog -pthread"
-USR_LFLAGS="-lopenblas"
+USR_LFLAGS="-lopenblas -pthread"
 
 # generic compiler flags
 G="-DBLAS_MXM -mcmodel=medium"
