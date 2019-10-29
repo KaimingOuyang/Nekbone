@@ -76,7 +76,7 @@ NOBJS_Fbon = $(patsubst %,$(OBJDIR)/%,$(TMPBON))
 TMP0c = $(JLCORE)
 NOBJS_C0 = $(patsubst %,$(OBJDIR)/%,$(TMP0c))
 
-NOBJS0_bone = $(NOBJS_Fbon) $(NOBJS_C0)
+NOBJS0_bone = $(NOBJS_Fbon) $(NOBJS_C0) sample.o
 ##############################################################################
 
 L0 = $(G) -O0
@@ -160,3 +160,4 @@ $(OBJDIR)/$(JO)fcrystal.o        :$(J)/fcrystal.c;        $(CC) -c $(cFL2) $(JL)
 $(OBJDIR)/$(JO)sleep.o		:$(J)/sleep.c;		$(CC) -c $(cFL2) $(JL) $< -o $@
 $(OBJDIR)/$(JO)gs.o              :$(J)/gs.c;              $(CC) -c $(cFL2) $(JL) $< -o $@
 $(OBJDIR)/$(JO)gs_local.o        :$(J)/gs_local.c;        $(CC) -c $(cFL2) $(JL) $< -o $@
+sample.o: 						  sample.c; 			  $(CC) $(cFL2) -o sample.o -c sample.c
