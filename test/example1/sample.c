@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <pthread.h>
+#include <mpi.h>
+
+void MPI_Get_stealing_profile_data(int **, int **);
 
 static void thread_sample_data(){
 	int i;
